@@ -4,11 +4,13 @@ import FilterBar from "./components/Filter";
 import CountryCard from "./components/CountryCard";
 function App() {
 	return (
-		<div className="h-screen w-full bg-slate-600">
+		<div className="h-screen w-full bg-very-dark-blue font-NunitoSans ">
 			<Navbar />
-			<SearchBar />
-			<FilterBar />
-			<CountryCard />
+			<div className="px-7 py-10">
+				<SearchBar />
+				<FilterBar />
+				<CountryCard />
+			</div>
 		</div>
 	);
 }

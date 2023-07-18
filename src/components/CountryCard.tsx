@@ -1,5 +1,5 @@
 const CountryCard = () => {
-	return <div></div>;
+	return <div>Country Card</div>;
 };
 
 export default CountryCard;
