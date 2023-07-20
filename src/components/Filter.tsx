@@ -26,9 +26,9 @@ function Filter() {
 				>
 					<path
 						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						strokeWidth="2"
 						d="m1 1 4 4 4-4"
 					/>
 				</svg>
@@ -37,7 +37,7 @@ function Filter() {
 			{toggler && (
 				<div
 					id="dropdown"
-					className="z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
+					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
 				>
 					<ul
 						className="mt-2 w-72 rounded-lg bg-white py-2 text-sm text-black"
