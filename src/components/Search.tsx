@@ -1,6 +1,11 @@
 import MagnifyingGlass from "../assets/images/magnifying-glass.svg";
 
 function Search() {
+	// This handle change function gets the info from the search bar
+	// const handleInputChange = (e:string) => {
+	// 	console.log(e.currentTarget.value)
+	// }
+
 	return (
 		<div>
 			<label className="relative" htmlFor="search bar">
@@ -11,7 +16,7 @@ function Search() {
 				/>
 				<input
 					className=" flex h-20 w-full items-center justify-center rounded-lg px-28 text-2xl placeholder:text-dark-gray"
-					type="text"
+					type="search"
 					placeholder="Search for a country..."
 				/>
 			</label>

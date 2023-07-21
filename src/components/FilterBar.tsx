@@ -1,11 +1,20 @@
 // import downArrow from "../assets/images/chevron-down.svg";
 import { useState } from "react";
+interface FilterProps {
+	regionSetter: React.Dispatch<React.SetStateAction<string>>;
+}
 
-function Filter() {
+const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
+
+function Filter({ regionSetter }: FilterProps) {
 	const [toggler, setToggler] = useState(false);
 
 	const handleButtonClick = () => {
 		setToggler(!toggler);
+	};
+
+	const handleRegionClick = (region: string) => {
+		regionSetter(region);
 	};
 
 	return (
@@ -43,46 +52,19 @@ function Filter() {
 						className="mt-2 w-72 rounded-lg bg-white py-2 text-sm text-black"
 						aria-labelledby="dropdownDefaultButton"
 					>
-						<li>
-							<a
-								href="#"
-								className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-							>
-								Africa
-							</a>
-						</li>
-						<li>
-							<a
-								href="#"
-								className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-							>
-								America
-							</a>
-						</li>
-						<li>
-							<a
-								href="#"
-								className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-							>
-								Asia
-							</a>
-						</li>
-						<li>
-							<a
-								href="#"
-								className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-							>
-								Europe
-							</a>
-						</li>
-						<li>
-							<a
-								href="#"
-								className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-							>
-								Oceania
-							</a>
-						</li>
+						{regions.map((region, i) => {
+							return (
+								<li key={i}>
+									<a
+										onClick={() => handleRegionClick(region)}
+										href="#"
+										className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+									>
+										{region}
+									</a>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
 			)}
