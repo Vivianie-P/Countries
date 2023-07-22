@@ -9,15 +9,16 @@ const queryClient = new QueryClient();
 
 function App() {
 	const [region, setRegion] = useState<string>("All");
+	const [userInput, setUserInput] = useState<string>("");
 
 	return (
 		<QueryClientProvider client={queryClient}>
 			<div className=" w-full bg-very-dark-blue font-NunitoSans ">
 				<Navbar />
 				<div className="px-7 py-10">
-					<SearchBar />
+					<SearchBar setUserInput={setUserInput} />
 					<FilterBar regionSetter={setRegion} />
-					<CountriesList region={region} />
+					<CountriesList region={region} userInput={userInput} />
 				</div>
 			</div>
 		</QueryClientProvider>

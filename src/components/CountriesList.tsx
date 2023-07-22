@@ -8,9 +8,10 @@ const countries: CountryInterface[] = countryData;
 
 interface CountriesListProps {
 	region: string;
+	userInput: string;
 }
 
-const CountriesList = ({ region }: CountriesListProps) => {
+const CountriesList = ({ region, userInput }: CountriesListProps) => {
 	const [filteredCountries, setFilteredCountries] = useState(countries);
 
 	const getCountries = (page: number) => {
@@ -28,24 +29,28 @@ const CountriesList = ({ region }: CountriesListProps) => {
 	});
 
 	useEffect(() => {
+		let newCountries;
+
+		if (userInput !== "") {
+			newCountries = countries.filter((country) => {
+				return country.name.toLowerCase().startsWith(userInput.toLowerCase());
+			});
+		} else {
+			newCountries = countries;
+		}
+
 		if (region !== "All") {
-			const newCountries = countries.filter((country) => {
+			newCountries = newCountries.filter((country) => {
 				return country.region === region;
 			});
-			setFilteredCountries(newCountries);
-		} else {
-			setFilteredCountries(countries);
 		}
-	}, [region]);
+
+		setFilteredCountries(newCountries);
+	}, [region, userInput]);
 
 	useEffect(() => {
 		refetch();
 	}, [filteredCountries]);
-
-	// This useEffect is for filtering the info from the serach bar
-	// useEffect(()=> {
-
-	// },[])
 
 	return (
 		<div className="">
