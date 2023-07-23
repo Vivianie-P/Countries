@@ -15,7 +15,3 @@ body {
 	padding: 0px;
 	overflow-x: hidden;
 }
-
-.display-none {
-	@apply hidden;
-}

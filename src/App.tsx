@@ -7,20 +7,6 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-// const theme = window?.localStorage?.getItem("theme")
-// 	? window.localStorage.getItem("theme")
-// 	: "light";
-
-// const toggleTheme = () => {
-// 	if (theme === "light" || !theme) {
-// 		setThemeChange("dark");
-// 		window.localStorage.setItem("theme", "dark");
-// 	} else {
-// 		setThemeChange("light");
-// 		window.localStorage.setItem("theme", "light");
-// 	}
-// };
-
 function App() {
 	const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 	const [region, setRegion] = useState<string>("All");
