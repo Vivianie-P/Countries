@@ -1,3 +1,4 @@
+import { useIntersection } from "@mantine/hooks";
 import countryData from "../assets/data/data.json";
 import { CountryInterface } from "../Interfaces";
 import CountryCard from "./CountryCard";
@@ -30,6 +31,17 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 
 	const listOfAllCountries = data?.pages.flatMap((page) => page);
 
+	const { ref, entry } = useIntersection({
+		root: null,
+		threshold: 1,
+	});
+
+	useEffect(() => {
+		if (entry?.isIntersecting) {
+			fetchNextPage();
+		}
+	}, [entry]);
+
 	useEffect(() => {
 		let newCountries;
 
@@ -56,10 +68,12 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 
 	return (
 		<div className="w-full flex items-center flex-col">
-			<div className="flex-row flex-wrap w-full xs:gap-20 flex sm:justify-between sm:max-w-screen-2xl justify-center items-center">
-				{listOfAllCountries?.map((country) => (
-					<CountryCard countryInfo={country} />
-				))}
+			<div className=" grid w-full gap-14 sm:max-w-screen-xl justify-center items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+				{listOfAllCountries?.map((country, i) => {
+					if (i === listOfAllCountries.length - 1)
+						return <CountryCard key={i} lastCardRef={ref} countryInfo={country} />;
+					return <CountryCard key={i} countryInfo={country} />;
+				})}
 			</div>
 			<div className="flex justify-center items-center">
 				<button
@@ -69,7 +83,7 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 				>
 					{isFetchingNextPage
 						? "Loading More..."
-						: (data?.pages.length ?? 0) < 3
+						: (data?.pages.length ?? 0) < 25
 						? "Load More"
 						: "Nothing more to load"}
 				</button>
