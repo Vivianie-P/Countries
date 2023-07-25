@@ -19,7 +19,7 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 		return filteredCountries.slice((page - 1) * 10, page * 10);
 	};
 
-	const { data, fetchNextPage, isFetchingNextPage, refetch } = useInfiniteQuery({
+	const { data, fetchNextPage, refetch } = useInfiniteQuery({
 		queryKey: ["query"],
 		queryFn: ({ pageParam = 1 }) => getCountries(pageParam),
 		getNextPageParam: (_, pages) => pages.length + 1,
@@ -33,7 +33,7 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 
 	const { ref, entry } = useIntersection({
 		root: null,
-		threshold: 1,
+		threshold: 0.3,
 	});
 
 	useEffect(() => {
@@ -74,19 +74,6 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 						return <CountryCard key={i} lastCardRef={ref} countryInfo={country} />;
 					return <CountryCard key={i} countryInfo={country} />;
 				})}
-			</div>
-			<div className="flex justify-center items-center">
-				<button
-					className="bg-white text-3xl rounded-lg w-[31rem] mt-5 h-20"
-					onClick={() => fetchNextPage()}
-					disabled={isFetchingNextPage}
-				>
-					{isFetchingNextPage
-						? "Loading More..."
-						: (data?.pages.length ?? 0) < 25
-						? "Load More"
-						: "Nothing more to load"}
-				</button>
 			</div>
 		</div>
 	);

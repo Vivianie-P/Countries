@@ -8,29 +8,30 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 function App() {
-	const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+	const [theme, setTheme] = useState(localStorage.getItem("theme"));
 	const [region, setRegion] = useState<string>("All");
 	const [userInput, setUserInput] = useState<string>("");
 
 	const themeSwitch = () => {
-		setTheme(theme === "dark" ? "light" : "dark");
+		setTheme(theme === null ? "dark" : null);
 	};
 
 	useLayoutEffect(() => {
+		console.log(theme);
 		if (theme === "dark") {
 			document.documentElement.classList.add("dark");
 			localStorage.theme = "dark";
 		} else {
 			document.documentElement.classList.remove("dark");
-			localStorage.theme = "light";
+			localStorage.removeItem("theme");
 		}
 	}, [theme]);
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className=" w-full dark:bg-very-dark-blue font-NunitoSans bg-white ">
+			<div className=" w-full bg-slate-300 font-NunitoSans dark:bg-very-dark-blue ">
 				<Navbar themeSwitch={themeSwitch} />
-				<div className="px-7 py-10 flex flex-col sm:flex-row sm:justify-between sm:items-center max-w-2xl mx-auto sm:mx-0 sm:max-w-none">
+				<div className="mx-auto flex max-w-2xl flex-col px-7 py-10 sm:mx-0 sm:max-w-none sm:flex-row sm:items-center sm:justify-between">
 					<SearchBar setUserInput={setUserInput} />
 					<FilterBar regionSetter={setRegion} />
 				</div>
