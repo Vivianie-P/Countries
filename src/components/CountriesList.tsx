@@ -28,6 +28,8 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 		},
 	});
 
+	const listOfAllCountries = data?.pages.flatMap((page) => page);
+
 	useEffect(() => {
 		let newCountries;
 
@@ -53,14 +55,12 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 	}, [filteredCountries]);
 
 	return (
-		<div className="">
-			{data?.pages.map((page, i) => (
-				<div key={i}>
-					{page.map((country, j) => (
-						<CountryCard countryInfo={country} key={j} />
-					))}
-				</div>
-			))}
+		<div className="w-full flex items-center flex-col">
+			<div className="flex-row flex-wrap w-full xs:gap-20 flex sm:justify-between sm:max-w-screen-2xl justify-center items-center">
+				{listOfAllCountries?.map((country) => (
+					<CountryCard countryInfo={country} />
+				))}
+			</div>
 			<div className="flex justify-center items-center">
 				<button
 					className="bg-white text-3xl rounded-lg w-[31rem] mt-5 h-20"

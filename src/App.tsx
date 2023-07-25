@@ -30,9 +30,11 @@ function App() {
 		<QueryClientProvider client={queryClient}>
 			<div className=" w-full dark:bg-very-dark-blue font-NunitoSans bg-white ">
 				<Navbar themeSwitch={themeSwitch} />
-				<div className="px-7 py-10">
+				<div className="px-7 py-10 flex flex-col sm:flex-row sm:justify-between sm:items-center max-w-2xl mx-auto sm:mx-0 sm:max-w-none">
 					<SearchBar setUserInput={setUserInput} />
 					<FilterBar regionSetter={setRegion} />
+				</div>
+				<div className="px-7 pb-10">
 					<CountriesList region={region} userInput={userInput} />
 				</div>
 			</div>

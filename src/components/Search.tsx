@@ -20,7 +20,7 @@ function Search({ setUserInput }: SearchProps) {
 					alt="magnifying-glass-svg"
 				/>
 				<input
-					className=" flex h-20 w-full items-center justify-center rounded-lg px-28 text-2xl placeholder:text-dark-gray"
+					className=" flex max-w-lg h-20 w-full items-center justify-center rounded-lg px-28 text-2xl placeholder:text-dark-gray"
 					type="search"
 					placeholder="Search for a country..."
 					onChange={handleInputChange}

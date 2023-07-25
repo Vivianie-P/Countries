@@ -21,7 +21,7 @@ function Filter({ regionSetter }: FilterProps) {
 		<div className="relative">
 			<button
 				id="dropdownDefaultButton"
-				className="mt-16 inline-flex h-20 w-72 items-center rounded-lg bg-white px-5 py-2.5 text-center text-2xl font-medium text-black"
+				className="my-16 inline-flex h-20 items-center rounded-lg bg-white px-5 py-2.5 text-center text-2xl font-medium text-black"
 				type="button"
 				onClick={handleButtonClick}
 			>
