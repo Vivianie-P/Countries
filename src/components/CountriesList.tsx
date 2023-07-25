@@ -67,8 +67,8 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 	}, [filteredCountries]);
 
 	return (
-		<div className="w-full flex items-center flex-col">
-			<div className=" grid w-full gap-14 sm:max-w-screen-xl justify-center items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+		<div className="flex w-full flex-col items-center">
+			<div className=" grid w-full items-center justify-center gap-14 sm:max-w-screen-xl sm:grid-cols-2 md:grid-cols-3 lg:max-w-screen-2xl lg:grid-cols-4">
 				{listOfAllCountries?.map((country, i) => {
 					if (i === listOfAllCountries.length - 1)
 						return <CountryCard key={i} lastCardRef={ref} countryInfo={country} />;

@@ -21,13 +21,13 @@ function Filter({ regionSetter }: FilterProps) {
 		<div className="relative">
 			<button
 				id="dropdownDefaultButton"
-				className="my-16 inline-flex h-20 items-center rounded-lg bg-white px-5 py-2.5 text-center text-2xl font-medium text-black"
+				className="my-16 inline-flex h-20 items-center rounded-lg bg-white px-5 py-2.5 text-center text-2xl font-medium text-black sm:w-[20rem] md:h-24"
 				type="button"
 				onClick={handleButtonClick}
 			>
 				Filter by Region
 				<svg
-					className="ml-2.5 h-2.5 w-2.5"
+					className="ml-16 h-6 w-6"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -37,7 +37,7 @@ function Filter({ regionSetter }: FilterProps) {
 						stroke="currentColor"
 						strokeLinecap="round"
 						strokeLinejoin="round"
-						strokeWidth="2"
+						strokeWidth="0.8"
 						d="m1 1 4 4 4-4"
 					/>
 				</svg>
@@ -46,7 +46,7 @@ function Filter({ regionSetter }: FilterProps) {
 			{toggler && (
 				<div
 					id="dropdown"
-					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
+					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 md:w-80"
 				>
 					<ul
 						className="mt-2 w-72 rounded-lg bg-white py-2 text-sm text-black"
