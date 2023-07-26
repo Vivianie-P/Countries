@@ -13,7 +13,7 @@ function Search({ setUserInput }: SearchProps) {
 
 	return (
 		<div>
-			<label className="relative" htmlFor="search bar">
+			<label className="relative" htmlFor="searchCountryInfo">
 				<img
 					className="absolute left-9 top-1/2 h-12 w-12 -translate-y-1/2 transform"
 					src={MagnifyingGlass}
@@ -22,6 +22,7 @@ function Search({ setUserInput }: SearchProps) {
 				<input
 					className="flex h-20 w-full items-center justify-center rounded-lg px-28 text-2xl placeholder:text-dark-gray md:h-24 md:w-[45rem]"
 					type="search"
+					id="searchCountryInfo"
 					placeholder="Search for a country..."
 					onChange={handleInputChange}
 				/>

@@ -1,14 +1,27 @@
-import { CountryInterface } from "../Interfaces";
+import { CountryInterface, DefaultDialogInterface } from "../Interfaces";
 interface CountryCardProps {
 	countryInfo: CountryInterface;
 	lastCardRef?: (element: any) => void;
-	modalClick?: () => void;
+	setDialogInfo: React.Dispatch<
+		React.SetStateAction<DefaultDialogInterface | undefined>
+	>;
 }
 
-const CountryCard = ({ countryInfo, lastCardRef }: CountryCardProps) => {
+const CountryCard = ({
+	countryInfo,
+	lastCardRef,
+	setDialogInfo,
+}: CountryCardProps) => {
+	const handleClickDialogOpen = () => {
+		setDialogInfo({
+			isOpen: true,
+			country: countryInfo,
+		});
+	};
+
 	return (
 		<div
-			// onClick={modalClick}
+			onClick={handleClickDialogOpen}
 			ref={lastCardRef}
 			className="h-[417px] w-full cursor-pointer rounded-xl bg-white sm:items-center"
 		>

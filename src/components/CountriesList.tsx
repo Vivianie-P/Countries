@@ -1,13 +1,12 @@
 import { useIntersection } from "@mantine/hooks";
 import countryData from "../assets/data/data.json";
-import { CountryInterface } from "../Interfaces";
+import { CountryInterface, DefaultDialogInterface } from "../Interfaces";
 import CountryCard from "./CountryCard";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-// import DetailsPage from "./DetailsPage";
+import DetailsPage from "./DetailsPage";
 
 const countries: CountryInterface[] = countryData;
-
 interface CountriesListProps {
 	region: string;
 	userInput: string;
@@ -15,10 +14,7 @@ interface CountriesListProps {
 
 const CountriesList = ({ region, userInput }: CountriesListProps) => {
 	const [filteredCountries, setFilteredCountries] = useState(countries);
-	// const [open, setOpen] = useState({
-	// 	isOpen: false,
-	// 	country: undefined,
-	// });
+	const [dialogInfo, setDialogInfo] = useState<DefaultDialogInterface>();
 
 	const getCountries = (page: number) => {
 		return filteredCountries.slice((page - 1) * 10, page * 10);
@@ -40,14 +36,6 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 		root: null,
 		threshold: 0.3,
 	});
-
-	// const handleClickDialogOpen = () => {
-	// 	setOpen({ ...open, isOpen: true });
-	// };
-
-	// const handleClickDialogClose = () => {
-	// 	setOpen({ ...open, isOpen: false });
-	// };
 
 	useEffect(() => {
 		if (entry?.isIntersecting) {
@@ -84,10 +72,31 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 			<div className=" grid w-full items-center justify-center gap-24 sm:max-w-screen-xl sm:grid-cols-2 md:grid-cols-3 lg:max-w-screen-2xl lg:grid-cols-4">
 				{listOfAllCountries?.map((country, i) => {
 					if (i === listOfAllCountries.length - 1)
-						return <CountryCard key={i} lastCardRef={ref} countryInfo={country} />;
-					return <CountryCard key={i} countryInfo={country} />;
+						return (
+							<CountryCard
+								key={i}
+								lastCardRef={ref}
+								countryInfo={country}
+								setDialogInfo={setDialogInfo}
+							/>
+						);
+					return (
+						<CountryCard
+							key={i}
+							countryInfo={country}
+							setDialogInfo={setDialogInfo}
+						/>
+					);
 				})}
 			</div>
+			{dialogInfo?.isOpen && (
+				<dialog open>
+					<DetailsPage
+						countryDetails={dialogInfo.country}
+						setDialogInfo={setDialogInfo}
+					/>
+				</dialog>
+			)}
 		</div>
 	);
 };
