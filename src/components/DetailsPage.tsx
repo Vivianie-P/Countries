@@ -25,9 +25,9 @@ const DetailsPage = ({ countryDetails, setDialogInfo }: DetailsPageProps) => {
 					>
 						Back
 					</button>
-					<div className="rounded-xl bg-white sm:items-center">
+					<div className="flex flex-col items-center justify-center rounded-xl bg-white sm:flex-row sm:justify-evenly">
 						<img
-							className="my-4 h-[50rem] w-full object-cover px-10"
+							className="my-4 h-[32rem] w-[55rem] object-cover px-10"
 							src={countryDetails.flag}
 							alt="country flag"
 						/>
