@@ -90,7 +90,10 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 				})}
 			</div>
 			{dialogInfo?.isOpen && (
-				<dialog open>
+				<dialog
+					open
+					className="fixed left-0 top-0 flex h-full w-full items-center justify-center"
+				>
 					<DetailsPage
 						countryDetails={dialogInfo.country}
 						setDialogInfo={setDialogInfo}
