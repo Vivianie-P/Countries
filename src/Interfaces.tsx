@@ -64,5 +64,3 @@ type Flags = {
 	svg: string;
 	png: string;
 };
-
-// Below are more interface/types for the rest of this project

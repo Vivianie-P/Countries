@@ -2,13 +2,15 @@ import { CountryInterface } from "../Interfaces";
 interface CountryCardProps {
 	countryInfo: CountryInterface;
 	lastCardRef?: (element: any) => void;
+	modalClick?: () => void;
 }
 
 const CountryCard = ({ countryInfo, lastCardRef }: CountryCardProps) => {
 	return (
 		<div
+			// onClick={modalClick}
 			ref={lastCardRef}
-			className="h-[417px] w-full rounded-xl bg-white sm:items-center"
+			className="h-[417px] w-full cursor-pointer rounded-xl bg-white sm:items-center"
 		>
 			<img
 				className="h-[200px] w-full rounded-t-xl object-cover"
