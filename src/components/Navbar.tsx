@@ -8,7 +8,7 @@ interface NavbarInterface {
 
 function Navbar({ themeSwitch, theme }: NavbarInterface) {
 	return (
-		<div className="fixed top-0 z-10 w-full bg-white dark:bg-dark-blue">
+		<div className="fixed top-0 z-10 w-full bg-sky-200 dark:bg-dark-blue">
 			<div className="m-auto flex h-[95px] w-full items-center justify-between px-8 text-slate-800  dark:text-white md:px-16 lg:max-w-screen-2xl">
 				<h1 className="font-NunitoSans text-3xl font-bold sm:text-4xl">
 					World Search
