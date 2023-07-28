@@ -23,7 +23,7 @@ const CountryCard = ({
 		<div
 			onClick={handleClickDialogOpen}
 			ref={lastCardRef}
-			className="h-[417px] w-full cursor-pointer rounded-xl bg-white sm:items-center"
+			className="h-[417px] w-full cursor-pointer rounded-xl bg-white shadow-md sm:items-center"
 		>
 			<img
 				className="h-[200px] w-full rounded-t-xl object-cover"
@@ -32,7 +32,9 @@ const CountryCard = ({
 			/>
 
 			<div className="my-4 flex flex-col gap-3 px-12 text-left text-3xl text-black">
-				<h1 className="mt-5 text-4xl font-extrabold">{countryInfo.name}</h1>
+				<h1 className="mt-5 text-4xl font-extrabold">
+					{countryInfo.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}
+				</h1>
 				<h2 className="mt-5 font-semibold">
 					Population:{" "}
 					<span className="text-2xl font-thin">

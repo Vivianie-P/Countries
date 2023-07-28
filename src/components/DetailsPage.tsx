@@ -1,13 +1,20 @@
 import { CountryInterface, DefaultDialogInterface } from "../Interfaces";
+import LeftArrow from "../assets/images/left-arrow.svg";
+import WhiteLeftArrow from "../assets/images/WHT-left-arrow.svg";
 
 interface DetailsPageProps {
 	countryDetails: CountryInterface | undefined;
 	setDialogInfo: React.Dispatch<
 		React.SetStateAction<DefaultDialogInterface | undefined>
 	>;
+	theme: string | null;
 }
 
-const DetailsPage = ({ countryDetails, setDialogInfo }: DetailsPageProps) => {
+const DetailsPage = ({
+	theme,
+	countryDetails,
+	setDialogInfo,
+}: DetailsPageProps) => {
 	const closeDialog = () => {
 		setDialogInfo({
 			isOpen: false,
@@ -17,18 +24,27 @@ const DetailsPage = ({ countryDetails, setDialogInfo }: DetailsPageProps) => {
 
 	return (
 		countryDetails && (
-			<div className="h-full w-full bg-zinc-100 opacity-95">
-				<div className="z-9 mt-[95px] w-full overflow-y-auto">
-					<div className="flex h-full w-full flex-col md:mx-auto md:max-w-screen-2xl">
-						<div className="flex items-center rounded-xl px-10">
+			<div className="h-full w-full opacity-95">
+				<div className="mt-[95px] w-full md:h-full">
+					<div className="flex h-full w-full flex-col md:mx-auto md:max-w-screen-2xl md:justify-center">
+						<div className="relative flex items-center rounded-xl p-10">
+							<img
+								src={`${theme === null ? LeftArrow : WhiteLeftArrow}`}
+								className="absolute left-16 top-1/2 z-10 h-7 w-7 -translate-y-1/2 transform"
+								alt="left arrow SVG"
+							/>
 							<button
 								onClick={closeDialog}
-								className="h-20 w-48 rounded-md bg-black text-3xl text-white"
+								className={`${
+									theme === null
+										? "bg-white text-very-dark-blueT"
+										: "bg-dark-blue text-white"
+								} h-20 w-52 rounded-md text-3xl drop-shadow-xl`}
 							>
 								Back
 							</button>
 						</div>
-						<div className="flex w-full flex-col items-center md:flex-row">
+						<div className="flex w-full flex-col items-center md:flex-row md:gap-40">
 							<div className="flex md:mx-auto md:h-full md:w-full">
 								<img
 									className="my-4 object-cover px-10 md:object-contain"
@@ -36,13 +52,19 @@ const DetailsPage = ({ countryDetails, setDialogInfo }: DetailsPageProps) => {
 									alt="country flag"
 								/>
 							</div>
-							<div className="my-4 flex w-full flex-col gap-3 px-12 text-3xl text-black ">
+							<div
+								className={`my-4 flex w-full flex-col gap-3 px-12 text-3xl ${
+									theme === null ? "text-very-dark-blueT" : "text-white"
+								} md:my-0 md:justify-center`}
+							>
 								<div className="flex">
-									<h1 className="mt-5 text-4xl font-extrabold">{countryDetails.name}</h1>
+									<h1 className="mt-5 text-4xl font-extrabold md:text-6xl">
+										{countryDetails.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}
+									</h1>
 								</div>
-								<div className="flex gap-10 text-5xl">
-									<div className="flex flex-col">
-										<h2 className="mt-5 font-semibold">
+								<div className="flex flex-col gap-10 text-5xl md:mt-10 md:flex-row">
+									<div className="flex flex-col md:gap-4">
+										<h2 className="mt-5 font-semibold md:mt-0">
 											Population:{" "}
 											<span className="text-3xl font-thin">
 												{countryDetails.population.toLocaleString("en-US")}
@@ -63,7 +85,7 @@ const DetailsPage = ({ countryDetails, setDialogInfo }: DetailsPageProps) => {
 											<span className="text-3xl font-thin">{countryDetails.capital}</span>
 										</h2>
 									</div>
-									<div className="flex flex-col">
+									<div className="flex flex-col md:gap-4">
 										<h2 className="font-semibold">
 											Top Level Domain:{" "}
 											<span className="text-3xl font-thin">

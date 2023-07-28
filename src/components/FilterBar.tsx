@@ -2,11 +2,12 @@
 import { useState } from "react";
 interface FilterProps {
 	regionSetter: React.Dispatch<React.SetStateAction<string>>;
+	theme: string | null;
 }
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
 
-function Filter({ regionSetter }: FilterProps) {
+function Filter({ theme, regionSetter }: FilterProps) {
 	const [toggler, setToggler] = useState(false);
 
 	const handleButtonClick = () => {
@@ -21,7 +22,11 @@ function Filter({ regionSetter }: FilterProps) {
 		<div className="relative">
 			<button
 				id="dropdownDefaultButton"
-				className="my-16 inline-flex h-20 items-center rounded-lg bg-white px-5 py-2.5 text-center text-2xl font-medium text-black sm:w-[20rem] md:h-24"
+				className={`${
+					theme === null
+						? "bg-white text-very-dark-blueT"
+						: "bg-dark-blue text-white"
+				} my-16 inline-flex h-20 items-center rounded-lg px-5  py-2.5 text-center text-2xl font-medium text-black drop-shadow-xl sm:w-[20rem] md:h-24`}
 				type="button"
 				onClick={handleButtonClick}
 			>
@@ -46,10 +51,10 @@ function Filter({ regionSetter }: FilterProps) {
 			{toggler && (
 				<div
 					id="dropdown"
-					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700 md:w-80"
+					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-dark-blue md:w-80"
 				>
 					<ul
-						className="mt-2 w-72 rounded-lg bg-white py-2 text-sm text-black"
+						className="mt-2 w-72 rounded-lg py-2 text-sm text-very-dark-blueT dark:text-white"
 						aria-labelledby="dropdownDefaultButton"
 					>
 						{regions.map((region, i) => {

@@ -28,15 +28,15 @@ function App() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className=" w-full bg-slate-300 font-NunitoSans dark:bg-very-dark-blue ">
+			<div className="min-h-[100vh] w-full bg-zinc-100 font-NunitoSans dark:bg-very-dark-blue">
 				<Navbar theme={theme} themeSwitch={themeSwitch} />
 
-				<div className="mx-auto mt-[95px] flex max-w-2xl flex-col px-7 py-10 sm:mx-0 sm:max-w-none sm:flex-row sm:items-center sm:justify-between lg:mx-auto lg:max-w-screen-2xl">
-					<SearchBar setUserInput={setUserInput} />
-					<FilterBar regionSetter={setRegion} />
+				<div className="mx-auto mt-[95px] flex max-w-2xl flex-col px-7 py-10 sm:mx-0 sm:max-w-none sm:flex-row sm:items-center sm:justify-between lg:mx-auto lg:max-w-screen-2xl 2xl:p-0">
+					<SearchBar theme={theme} setUserInput={setUserInput} />
+					<FilterBar theme={theme} regionSetter={setRegion} />
 				</div>
 				<div className="px-7 pb-10">
-					<CountriesList region={region} userInput={userInput} />
+					<CountriesList theme={theme} region={region} userInput={userInput} />
 				</div>
 			</div>
 		</QueryClientProvider>

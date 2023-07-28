@@ -10,9 +10,10 @@ const countries: CountryInterface[] = countryData;
 interface CountriesListProps {
 	region: string;
 	userInput: string;
+	theme: string | null;
 }
 
-const CountriesList = ({ region, userInput }: CountriesListProps) => {
+const CountriesList = ({ theme, region, userInput }: CountriesListProps) => {
 	const [filteredCountries, setFilteredCountries] = useState(countries);
 	const [dialogInfo, setDialogInfo] = useState<DefaultDialogInterface>();
 
@@ -92,9 +93,12 @@ const CountriesList = ({ region, userInput }: CountriesListProps) => {
 			{dialogInfo?.isOpen && (
 				<dialog
 					open
-					className="fixed left-0 top-0 flex h-full w-full items-center justify-center"
+					className={`${
+						theme === null ? "bg-zinc-100 " : "bg-very-dark-blue"
+					} fixed left-0 top-0 z-20 flex h-full w-full items-center justify-center overflow-y-scroll`}
 				>
 					<DetailsPage
+						theme={theme}
 						countryDetails={dialogInfo.country}
 						setDialogInfo={setDialogInfo}
 					/>
