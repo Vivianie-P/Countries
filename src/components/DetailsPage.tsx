@@ -94,22 +94,51 @@ const DetailsPage = ({
 										</h2>
 										<h2 className="font-semibold">
 											Currencies:{" "}
-											<span className="text-3xl font-thin">
-												{countryDetails.numericCode}
-											</span>
+											{!countryDetails?.currencies && (
+												<span className="text-3xl font-thin"></span>
+											)}
+											{countryDetails?.currencies &&
+												countryDetails.currencies.map((money, i) => (
+													<span className="text-3xl font-thin" key={i}>
+														{money.name}
+													</span>
+												))}
 										</h2>
 										<h2 className="mb-10 font-semibold">
 											Languages:{" "}
-											<span className="text-3xl font-thin">
-												{countryDetails.independent}
-											</span>
+											{!countryDetails?.languages && (
+												<span className="text-3xl font-thin"></span>
+											)}
+											{countryDetails?.languages &&
+												countryDetails.languages.map((languages, i) => (
+													<span className="text-3xl font-thin" key={i}>
+														{languages.name}
+													</span>
+												))}
 										</h2>
 									</div>
 								</div>
-								<div className="flex">
+								<div className="flex w-full">
 									<h2 className="text-3xl font-semibold">
 										Border Countries:{" "}
-										<span className="text-2xl font-thin">{countryDetails.borders}</span>
+										{!countryDetails?.borders && (
+											<button className="rounded-md text-3xl font-thin drop-shadow-xl">
+												N/A
+											</button>
+										)}
+										{countryDetails?.borders &&
+											countryDetails.borders.map((border, i) => (
+												<button
+													className={`${
+														theme === null
+															? "bg-white text-very-dark-blueT"
+															: "bg-dark-blue text-white"
+													} h-16 w-48 gap-10 rounded-md text-3xl font-thin drop-shadow-xl`}
+													key={i}
+												>
+													{border}
+												</button>
+											))}
 									</h2>
 								</div>
 							</div>
