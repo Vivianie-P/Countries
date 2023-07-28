@@ -1,17 +1,45 @@
 import Navbar from "./components/Navbar";
 import SearchBar from "./components/Search";
-import FilterBar from "./components/Filter";
-import CountryCard from "./components/CountryCard";
+import FilterBar from "./components/FilterBar";
+import CountriesList from "./components/CountriesList";
+import { useState, useLayoutEffect } from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
+	const [theme, setTheme] = useState(localStorage.getItem("theme"));
+	const [region, setRegion] = useState<string>("All");
+	const [userInput, setUserInput] = useState<string>("");
+
+	const themeSwitch = () => {
+		setTheme(theme === null ? "dark" : null);
+	};
+
+	useLayoutEffect(() => {
+		if (theme === "dark") {
+			document.documentElement.classList.add("dark");
+			localStorage.theme = "dark";
+		} else {
+			document.documentElement.classList.remove("dark");
+			localStorage.removeItem("theme");
+		}
+	}, [theme]);
+
 	return (
-		<div className="h-screen w-full bg-very-dark-blue font-NunitoSans ">
-			<Navbar />
-			<div className="px-7 py-10">
-				<SearchBar />
-				<FilterBar />
-				<CountryCard />
+		<QueryClientProvider client={queryClient}>
+			<div className="min-h-[100vh] w-full bg-zinc-100 font-NunitoSans dark:bg-very-dark-blue">
+				<Navbar theme={theme} themeSwitch={themeSwitch} />
+
+				<div className="mx-auto mt-[95px] flex max-w-2xl flex-col px-7 py-10 sm:mx-0 sm:max-w-none sm:flex-row sm:items-center sm:justify-between lg:mx-auto lg:max-w-screen-2xl 2xl:p-0">
+					<SearchBar theme={theme} setUserInput={setUserInput} />
+					<FilterBar theme={theme} regionSetter={setRegion} />
+				</div>
+				<div className="px-7 pb-10">
+					<CountriesList theme={theme} region={region} userInput={userInput} />
+				</div>
 			</div>
-		</div>
+		</QueryClientProvider>
 	);
 }
 
