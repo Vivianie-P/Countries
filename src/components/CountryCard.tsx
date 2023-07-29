@@ -1,4 +1,7 @@
-import { CountryInterface, DefaultDialogInterface } from "../Interfaces";
+import {
+	CountryInterface,
+	DefaultDialogInterface,
+} from "../Utilities/Interfaces";
 interface CountryCardProps {
 	countryInfo: CountryInterface;
 	lastCardRef?: (element: any) => void;
