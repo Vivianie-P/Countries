@@ -26,7 +26,7 @@ function Filter({ theme, regionSetter }: FilterProps) {
 					theme === null
 						? "bg-white text-very-dark-blueT"
 						: "bg-dark-blue text-white"
-				} my-16 inline-flex h-20 items-center rounded-lg px-5  py-2.5 text-center text-2xl font-medium text-black drop-shadow-xl sm:w-[20rem] md:h-24`}
+				} my-16 inline-flex h-20 items-center rounded-lg px-5 py-2.5 text-center text-2xl font-medium text-black drop-shadow-xl sm:w-[20rem] md:h-24 md:w-[23rem] md:text-3xl`}
 				type="button"
 				onClick={handleButtonClick}
 			>

@@ -1,6 +1,9 @@
 import { useIntersection } from "@mantine/hooks";
 import countryData from "../assets/data/data.json";
-import { CountryInterface, DefaultDialogInterface } from "../Interfaces";
+import {
+	CountryInterface,
+	DefaultDialogInterface,
+} from "../Utilities/Interfaces";
 import CountryCard from "./CountryCard";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
