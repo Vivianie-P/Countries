@@ -5,7 +5,10 @@ import {
 import LeftArrow from "../assets/images/left-arrow.svg";
 import WhiteLeftArrow from "../assets/images/WHT-left-arrow.svg";
 import { useState } from "react";
-import { getCountryInfoByCode } from "../Utilities/Functions";
+import {
+	getCountryInfoByCode,
+	getCountryNameByCode,
+} from "../Utilities/Functions";
 
 interface DetailsPageProps {
 	countryDetails: CountryInterface | undefined;
@@ -167,7 +170,7 @@ const DetailsPage = ({
 													} h-16 w-44 rounded-md text-2xl font-thin drop-shadow-xl`}
 													key={i}
 												>
-													{border}
+													{getCountryNameByCode(border)}
 												</button>
 											))}
 									</div>
