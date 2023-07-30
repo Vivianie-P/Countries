@@ -1,13 +1,14 @@
 // import downArrow from "../assets/images/chevron-down.svg";
 import { useState } from "react";
 interface FilterProps {
+	regionFilter: string;
 	regionSetter: React.Dispatch<React.SetStateAction<string>>;
 	theme: string | null;
 }
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
 
-function Filter({ theme, regionSetter }: FilterProps) {
+function Filter({ theme, regionFilter, regionSetter }: FilterProps) {
 	const [toggler, setToggler] = useState(false);
 
 	const handleButtonClick = () => {
@@ -63,7 +64,9 @@ function Filter({ theme, regionSetter }: FilterProps) {
 									<a
 										onClick={() => handleRegionClick(region)}
 										href="#"
-										className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+										className={`${
+											regionFilter === region ? "text-3xl font-bold italic underline" : " "
+										} block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white`}
 									>
 										{region}
 									</a>

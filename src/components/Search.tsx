@@ -26,7 +26,7 @@ function Search({ setUserInput, theme }: SearchProps) {
 							? "bg-white text-very-dark-blueT placeholder:text-dark-gray"
 							: "bg-dark-blue text-white placeholder:text-white"
 					} flex h-20 w-full items-center justify-center rounded-lg px-28 text-2xl drop-shadow-xl md:h-24 md:w-[45rem] lg:text-3xl`}
-					type="search"
+					type="text"
 					id="searchCountryInfo"
 					placeholder="Search for a country..."
 					onChange={handleInputChange}

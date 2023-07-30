@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 
 function App() {
 	const [theme, setTheme] = useState(localStorage.getItem("theme"));
-	const [region, setRegion] = useState<string>("All");
+	const [regionFilter, setRegionFilter] = useState<string>("All");
 	const [userInput, setUserInput] = useState<string>("");
 
 	const themeSwitch = () => {
@@ -33,10 +33,18 @@ function App() {
 
 				<div className="mx-auto mt-[95px] flex max-w-2xl flex-col px-7 py-10 sm:mx-0 sm:max-w-none sm:flex-row sm:items-center sm:justify-between lg:mx-auto lg:max-w-screen-2xl 2xl:p-0">
 					<SearchBar theme={theme} setUserInput={setUserInput} />
-					<FilterBar theme={theme} regionSetter={setRegion} />
+					<FilterBar
+						theme={theme}
+						regionFilter={regionFilter}
+						regionSetter={setRegionFilter}
+					/>
 				</div>
 				<div className="px-7 pb-10">
-					<CountriesList theme={theme} region={region} userInput={userInput} />
+					<CountriesList
+						theme={theme}
+						regionFilter={regionFilter}
+						userInput={userInput}
+					/>
 				</div>
 			</div>
 		</QueryClientProvider>

@@ -11,17 +11,37 @@ import DetailsPage from "./DetailsPage";
 
 const countries: CountryInterface[] = countryData;
 interface CountriesListProps {
-	region: string;
+	regionFilter: string;
 	userInput: string;
 	theme: string | null;
 }
 
-const CountriesList = ({ theme, region, userInput }: CountriesListProps) => {
-	const [filteredCountries, setFilteredCountries] = useState(countries);
+const CountriesList = ({
+	theme,
+	regionFilter,
+	userInput,
+}: CountriesListProps) => {
 	const [dialogInfo, setDialogInfo] = useState<DefaultDialogInterface>();
 
 	const getCountries = (page: number) => {
-		return filteredCountries.slice((page - 1) * 10, page * 10);
+		console.log("page: ", page);
+
+		let newCountries;
+
+		if (userInput !== "") {
+			newCountries = countries.filter((country) => {
+				return country.name.toLowerCase().startsWith(userInput.toLowerCase());
+			});
+		} else {
+			newCountries = countries;
+		}
+
+		if (regionFilter !== "All") {
+			newCountries = newCountries.filter((country) => {
+				return country.region === regionFilter;
+			});
+		}
+		return newCountries.slice((page - 1) * 10, page * 10);
 	};
 
 	const { data, fetchNextPage, refetch } = useInfiniteQuery({
@@ -48,28 +68,8 @@ const CountriesList = ({ theme, region, userInput }: CountriesListProps) => {
 	}, [entry]);
 
 	useEffect(() => {
-		let newCountries;
-
-		if (userInput !== "") {
-			newCountries = countries.filter((country) => {
-				return country.name.toLowerCase().startsWith(userInput.toLowerCase());
-			});
-		} else {
-			newCountries = countries;
-		}
-
-		if (region !== "All") {
-			newCountries = newCountries.filter((country) => {
-				return country.region === region;
-			});
-		}
-
-		setFilteredCountries(newCountries);
-	}, [region, userInput]);
-
-	useEffect(() => {
-		refetch();
-	}, [filteredCountries]);
+		refetch({ refetchPage: (_page, index) => index === 0 });
+	}, [userInput, regionFilter]);
 
 	return (
 		<div className="flex w-full flex-col items-center">
