@@ -29,7 +29,7 @@ Users are able to:
 
 ### Screenshot
 
-![](..//![screenshot1](https://github.com/Vivianie-P/Countries/assets/81881081/09a0bea5-5fb4-4ed7-af04-d394f439e38f)
+![screenshot1](https://github.com/Vivianie-P/Countries/assets/81881081/09a0bea5-5fb4-4ed7-af04-d394f439e38f)
 ![screenshot2](https://github.com/Vivianie-P/Countries/assets/81881081/23f1f110-6522-4d9a-ad79-dae45ec4f441)
 ![screenshot3](https://github.com/Vivianie-P/Countries/assets/81881081/2615228f-dc2f-4ab0-a2a4-35b77ff7a6be)
 
