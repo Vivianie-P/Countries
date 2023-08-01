@@ -20,9 +20,11 @@ function App() {
 		if (theme === "dark") {
 			document.documentElement.classList.add("dark");
 			localStorage.theme = "dark";
+			document.documentElement.style.setProperty("--loader-bg", "#ffffff");
 		} else {
 			document.documentElement.classList.remove("dark");
 			localStorage.removeItem("theme");
+			document.documentElement.style.setProperty("--loader-bg", "#111517");
 		}
 	}, [theme]);
 

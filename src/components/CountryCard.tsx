@@ -26,10 +26,10 @@ const CountryCard = ({
 		<div
 			onClick={handleClickDialogOpen}
 			ref={lastCardRef}
-			className=" fade-in h-[417px] w-full transform-gpu cursor-pointer rounded-xl bg-white shadow-md dark:bg-dark-blue sm:items-center"
+			className="fade-in h-[417px] w-full transform-gpu cursor-pointer rounded-xl bg-white shadow-md dark:bg-dark-blue sm:items-center"
 		>
 			<img
-				className=" h-[200px] w-full rounded-t-xl object-cover"
+				className="h-[200px] w-full rounded-t-xl object-cover"
 				src={countryInfo.flag}
 				alt="country flag"
 			/>
