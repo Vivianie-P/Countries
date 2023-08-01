@@ -1,13 +1,14 @@
 // import downArrow from "../assets/images/chevron-down.svg";
 import { useState } from "react";
 interface FilterProps {
+	regionFilter: string;
 	regionSetter: React.Dispatch<React.SetStateAction<string>>;
 	theme: string | null;
 }
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
 
-function Filter({ theme, regionSetter }: FilterProps) {
+function Filter({ theme, regionFilter, regionSetter }: FilterProps) {
 	const [toggler, setToggler] = useState(false);
 
 	const handleButtonClick = () => {
@@ -51,10 +52,10 @@ function Filter({ theme, regionSetter }: FilterProps) {
 			{toggler && (
 				<div
 					id="dropdown"
-					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-dark-blue md:w-80"
+					className="absolute z-10 w-72 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-dark-blue sm:w-full"
 				>
 					<ul
-						className="mt-2 w-72 rounded-lg py-2 text-sm text-very-dark-blueT dark:text-white"
+						className=" rounded-lg py-2 text-sm text-very-dark-blueT dark:text-white"
 						aria-labelledby="dropdownDefaultButton"
 					>
 						{regions.map((region, i) => {
@@ -63,7 +64,11 @@ function Filter({ theme, regionSetter }: FilterProps) {
 									<a
 										onClick={() => handleRegionClick(region)}
 										href="#"
-										className="block px-4 py-2 text-2xl hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+										className={`${
+											regionFilter === region
+												? "text-3xl font-bold underline dark:text-yellow-200"
+												: " "
+										} block px-4 py-2 text-2xl`}
 									>
 										{region}
 									</a>
