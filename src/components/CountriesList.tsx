@@ -67,12 +67,6 @@ const CountriesList = ({
 	});
 
 	useEffect(() => {
-		console.log("data:", data);
-		console.log("is fetching info", isFetching);
-		console.log("is", hasNextPage);
-	}, [data, isFetching]);
-
-	useEffect(() => {
 		if (entry?.isIntersecting && hasNextPage) {
 			fetchNextPage();
 		}
