@@ -20,7 +20,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 Users are able to:
 
-- See all countries from the stroed API data on the homepage
+- See all countries from the stored API data on the homepage
 - Search for a country using an `input` field
 - Filter countries by region
 - Click on a country to see more detailed information on a separate page
